@@ -40,6 +40,7 @@ public class AdminController {
     }   
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getRestaurant() {
         try {
             List<Restaurant> restaurant = restaurantService.getAllNotApprovedRestaurants();
