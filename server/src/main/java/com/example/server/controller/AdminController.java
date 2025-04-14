@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.server.config.UserInfoUserDetails;
 import com.example.server.entity.Restaurant;
 import com.example.server.service.RestaurantService;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 @RestController
 @RequestMapping("/api/admin/restaurants")
@@ -35,7 +37,18 @@ public class AdminController {
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
+    }   
+
+    @GetMapping
+    public ResponseEntity<?> getRestaurant() {
+        try {
+            List<Restaurant> restaurant = restaurantService.getAllNotApprovedRestaurants();
+            return ResponseEntity.ok(restaurant);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
+    
 
     @PutMapping("/approve")
     @PreAuthorize("hasRole('ADMIN')")
