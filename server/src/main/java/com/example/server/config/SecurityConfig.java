@@ -52,6 +52,7 @@ public class SecurityConfig {
                                 "/swagger-ui.html",
 
                                 // Public restaurant APIs
+                                "/api/restaurants",
                                 "/api/restaurants/search",
                                 "/api/restaurants/{id:[a-fA-F0-9]{24}}",
                                 "/api/restaurants/{id:[a-fA-F0-9]{24}}/availability",
