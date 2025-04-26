@@ -45,7 +45,6 @@ public class ReservationController {
             @AuthenticationPrincipal UserInfoUserDetails userDetails) {
         UserInfo user = userDetails.getUserInfo();
         List<Reservation> reservationList = reservationService.findAllByRestaurantId(restaurantId, user.getId());
-
         List<ReservationResponseDTO> dtoList = reservationList.stream().map(res -> new ReservationResponseDTO(
                 res.getUser().getId(),
                 res.getRestaurant().getId(),
