@@ -21,5 +21,4 @@ public class ServerApplication {
 		System.out.println(">>> Current Time: " + new java.util.Date());
 		System.out.println(">>> Current Timezone: " + timeZone.getID());
 	}
-
 }
