@@ -167,7 +167,7 @@ public class ReservationService {
     public void autoCompleteReservations() {
         List<Reservation> list = reservationRepository
                 .findAllByStatusAndDateTimeBefore(ReservationStatus.PENDING, LocalDateTime.now());
-                System          .out.println("Auto-completing reservations: " + list.size());
+                System          .out.println("Auto-completing reservations: " + list.size() + "at " + LocalDateTime.now());
         for (Reservation r : list) {
             r.setStatus(ReservationStatus.COMPLETED);
         }
