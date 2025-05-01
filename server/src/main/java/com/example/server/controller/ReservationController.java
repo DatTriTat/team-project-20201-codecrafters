@@ -61,6 +61,7 @@ public class ReservationController {
         UserInfo user = userDetails.getUserInfo();
         List<Reservation> reservationList = reservationService.findAllByRestaurantId(restaurantId, user.getId());
         List<ReservationResponseDTO> dtoList = reservationList.stream().map(res -> new ReservationResponseDTO(
+                res.getId(),
                 res.getUser().getId(),
                 res.getRestaurant().getId(),
                 res.getDateTime(),
@@ -82,6 +83,7 @@ public class ReservationController {
         Reservation reservation = reservationService.findByIdAndRestaurantId(reservationId, restaurantId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         ReservationResponseDTO dto = new ReservationResponseDTO(
+                reservation.getId(),
                 reservation.getUser().getEmail(),
                 reservation.getRestaurant().getId(),
                 reservation.getDateTime(),
@@ -156,6 +158,7 @@ public class ReservationController {
 
         List<ReservationResponseDTO> dtoList = reservations.stream()
                 .map(res -> new ReservationResponseDTO(
+                        res.getId(),
                         res.getUser().getEmail(),
                         res.getRestaurant().getId(),
                         res.getDateTime(),
@@ -177,6 +180,7 @@ public class ReservationController {
     public ResponseEntity<ReservationResponseDTO> getReservationById(@PathVariable String id) {
         return reservationService.findById(id)
                 .map(res -> new ReservationResponseDTO(
+                        res.getId(),
                         res.getUser().getEmail(),
                         res.getRestaurant().getId(),
                         res.getDateTime(),
